@@ -20,8 +20,9 @@ router.post("/", (req, res, next) => {
 // GET /questions/:qID
 // Route for specific questions
 router.get("/:qID", (req, res, next) => {
-  res.json({ response: "You sent me the GET request for ID " + req.params.id });
+  res.json({ response: "You sent me the GET request for ID " + req.params.qID });
 });
+
 // POST /questions/:qID/answers
 // Route for specific questions
 router.post("/:qID/answers", (req, res, next) => {

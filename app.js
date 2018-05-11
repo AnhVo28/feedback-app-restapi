@@ -5,6 +5,16 @@ var app = express();
 var routes = require("./routes");
 var logger = require('morgan');
 var jsonParser = require("body-parser");
+var mongoose = require('mongoose')
+
+// Set up mongoose connection
+mongoose.connect(
+  "mongodb://localhost:27017/qa"
+);
+var db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error haha:"));
+
 
 app.use(logger("dev"))
 app.use(jsonParser.json());
