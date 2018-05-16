@@ -25,20 +25,20 @@ var QuestionsSchema = new mongoose.Schema({
   answers: [AnswersSchema]
 });
 
-AnswersSchema.method("update", (updates, callback) => {
+AnswersSchema.method("update", function(updates, callback){
   Object.assign(this, updates, { updateAt: new Date() });
   this.parent().save(callback);
 });
 
-AnswersSchema.method("vote", (votes, callback) => {
-  if (votes === "up") {
+AnswersSchema.method("vote", function (vote, callback){
+  if (vote === "up") {
     this.votes += 1;
   } else {
     this.votes -= 1;
   }
-
   this.parent().save(callback);
 });
+
 
 QuestionsSchema.pre("save", function(next) {
   this.answers.sort(sortAnswers);
