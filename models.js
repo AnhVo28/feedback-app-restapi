@@ -16,12 +16,12 @@ var AnswersSchema = new mongoose.Schema({
   text: String,
   createAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
-  vote: { type: Numer, default: 0 }
+  votes: { type: Number, default: 0 }
 });
 
 var QuestionsSchema = new mongoose.Schema({
   text: String,
-  createdDate: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
   answers: [AnswersSchema]
 });
 
@@ -31,7 +31,7 @@ AnswersSchema.method("update", (updates, callback) => {
 });
 
 AnswersSchema.method("vote", (votes, callback) => {
-  if (vote === "up") {
+  if (votes === "up") {
     this.votes += 1;
   } else {
     this.votes -= 1;
